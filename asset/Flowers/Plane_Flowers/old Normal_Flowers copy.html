@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+        .thumbnail {
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="gallery"></div>
+
+    <script>
+        function openImage(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        const mainImageUrls = [
+        "https://drive.google.com/uc?export=view&id=1qbeWjIg5RZ_0n-hoftufLenVFzL3fC_n",
+"https://drive.google.com/uc?export=view&id=12NQzCp6GqujTm7HhGXy1jB7ei4sYImYu",
+"https://drive.google.com/uc?export=view&id=1a-gKDw93sqAmXShkERZ5Tokld8yljCpa",
+"https://drive.google.com/uc?export=view&id=1_vsTbmndfDAm2Xr0t9e-ktjMzmJ7Lh1W",
+"https://drive.google.com/uc?export=view&id=1svA11lrN8DXIyinBPdGdxmKnB0Mq-JXq",
+"https://drive.google.com/uc?export=view&id=1oG3-hPHaDlNqLG4sxWpkK0JnQmHOMzTX",
+"https://drive.google.com/uc?export=view&id=1TOn4uFX9srEKhwBPgOPAYXvncb5PxF_8",
+"https://drive.google.com/uc?export=view&id=1n0ZA6dCeI1EduRduab4oYQpQ8Tmzcjk8",
+"https://drive.google.com/uc?export=view&id=1qXGvEpqvrpILl3tJy8LYhiwNC_9ALYZd",
+"https://drive.google.com/uc?export=view&id=1iQ0G_3HmzOp1O4WxCtB_2U0qU-9N3Xr5",
+"https://drive.google.com/uc?export=view&id=1Ag0Fio410d9UbanhV4QqZ6lV-ekvIgaR",
+"https://drive.google.com/uc?export=view&id=1CddeoV1YOwBoDfCTN2EUTV_Ae9oKYys-",
+"https://drive.google.com/uc?export=view&id=1uMNNLVCapPt1DZIBm_LRoz4q2cKjcgee",
+"https://drive.google.com/uc?export=view&id=1xigQng4D2BxXYP_xosIr9-nXR-41Lo_W",
+"https://drive.google.com/uc?export=view&id=1YE9VMdD-mK5p55z7cGPgsRY7Pk4aTQzu",
+"https://drive.google.com/uc?export=view&id=1u-LVUyRMV6yfW_LPour9tuL9_qIppsFf",
+"https://drive.google.com/uc?export=view&id=1kchuEXpgFUJX--ZIcKX3Pz3DW-416alP",
+"https://drive.google.com/uc?export=view&id=1mxBcz-viv-7N3ROzJa9KVqduJLOagNxS",
+"https://drive.google.com/uc?export=view&id=1lMNilVUwBxs1WJrYR5cM9Pl3pXSBxZ5k",
+"https://drive.google.com/uc?export=view&id=1QX4p-53TeQbd4ot7HYVeDQT4Zqq1gTWt",
+"https://drive.google.com/uc?export=view&id=1JEZTKXmS6NH0HpTs0tpv5Q08429j5VA8",
+"https://drive.google.com/uc?export=view&id=18o_iUy81c2Fjc7rSSHWKBnHKw66giwNt",
+"https://drive.google.com/uc?export=view&id=1lrvswfm3Un2eRy6XDBkNoZxMJtGtlMZg",
+"https://drive.google.com/uc?export=view&id=1ABWpcPCnmfVw9MM3y7r3fY43KFafDDXE",
+"https://drive.google.com/uc?export=view&id=1ZtRtGv8hDii9eXD-OidGPpdg1QD5-8dJ",
+"https://drive.google.com/uc?export=view&id=1NsR0-AWoJzzIC3GTm3nHYe-K33YwwgqE",
+"https://drive.google.com/uc?export=view&id=107EYZa-K_ePNSrjPL-wQwiUHB3nMvoEd",
+"https://drive.google.com/uc?export=view&id=1cITkmUt20IH_IPZqiO8K71Igza5y3D2S",
+"https://drive.google.com/uc?export=view&id=1CDzaH2vTnm9JP4oDtPTdvzdjyVlH35Ei",
+"https://drive.google.com/uc?export=view&id=1Fe8xLNK6wJklp8ARZumaCKVBR7-n4g7J"
+        ];
+
+        const thumbnailUrls = [
+        "https://drive.google.com/uc?export=view&id=1COK8iuiu5H8rIbwLNykHoY_kRA2cAZIc",
+"https://drive.google.com/uc?export=view&id=1ghRRLE3yyhTtUfeDPe3LG63PTg7lwK__",
+"https://drive.google.com/uc?export=view&id=1COLbhAvYdRFEGm9ZKbgRvV2lCwrkrH89",
+"https://drive.google.com/uc?export=view&id=1efn0XD1JuMzDWCUbTvminPqh8gWVhkWz",
+"https://drive.google.com/uc?export=view&id=1gkvRUpf0Opa8BfC_4nK5rC1LcKxFLrPr",
+"https://drive.google.com/uc?export=view&id=1Hq7JDqLgak8OBWiWGF50VWdMFxZxeLF5",
+"https://drive.google.com/uc?export=view&id=1gSDr5zPfkJTXZzpJyL5e2V8p3QdUjQFn",
+"https://drive.google.com/uc?export=view&id=1fyM6mOgNA9FKVQmkf4HbEgYod9pTzexg",
+"https://drive.google.com/uc?export=view&id=1_AVE-9cHhv7wrULK96QW3X3_WlPCZFeu",
+"https://drive.google.com/uc?export=view&id=1Q7Sn4XNqcEqCCoOu53bXT1AFv1wrR0-c",
+"https://drive.google.com/uc?export=view&id=1jhblxCqbdj_DJHfn2f-ZqMaUgTeodkOw",
+"https://drive.google.com/uc?export=view&id=1qek6F5iKXM555NQH3-DExXjNxh2CE95K",
+"https://drive.google.com/uc?export=view&id=1zVpWjZl9GIh4hnfOKgunr99_9qxrgEfS",
+"https://drive.google.com/uc?export=view&id=1sNBqieWFrFuVFxn-TBeAcCTYjQ4_qqVa",
+"https://drive.google.com/uc?export=view&id=1PacKdb5OdmTqTKr49VErV2TrugFbDN_B",
+"https://drive.google.com/uc?export=view&id=1nMIYJYqglMeyyRqyEGokcS-KWJmgqOYR",
+"https://drive.google.com/uc?export=view&id=1hFUN96-ODFinVSw713zArikVm3K3LDNo",
+"https://drive.google.com/uc?export=view&id=11akyWRXsS0ymBvIZ3rD7af31oXt9UCHF",
+"https://drive.google.com/uc?export=view&id=1j17FULTcl0DFei-_h6tV0yaiaXrtikI5",
+"https://drive.google.com/uc?export=view&id=164RnC2pvAfg9Vh_U-SHUFTca4LfWxYxq",
+"https://drive.google.com/uc?export=view&id=1ry-zYjcTfnRK1vRwWb6ULq5-kqwMyTFi",
+"https://drive.google.com/uc?export=view&id=1KEPuLlmwT-uK_SG3BB_F3tX8DZVN2Ib9",
+"https://drive.google.com/uc?export=view&id=1L4ca8ad3skQZ7NqD73wjK7ZNKj1HjMKq",
+"https://drive.google.com/uc?export=view&id=11MU-O6h2aYkH-ybI4ca5SoS411BSwYCR",
+"https://drive.google.com/uc?export=view&id=1I6xVqKWbcSUJpKWTjfyQ5lBzUOnSXM1m",
+"https://drive.google.com/uc?export=view&id=1NHtmQBjSzT5aQHF5X71FoZDtaHwpawes",
+"https://drive.google.com/uc?export=view&id=1TurpE9iQyJOZ7JprussyUE8l2G2OcS-L",
+"https://drive.google.com/uc?export=view&id=1trkWk7OqExTF-nFjLrCutTGUq8upDH4U",
+"https://drive.google.com/uc?export=view&id=1mdaEZZNX1KACLJXJzxoITUfTNJse1hGb",
+"https://drive.google.com/uc?export=view&id=1pt9oTSyW-x9QWesMKbk0O_gsTzlLy_67"
+        ];
+
+        const gallery = document.getElementById('gallery');
+
+        mainImageUrls.forEach((mainImageUrl, index) => {
+            const thumbnailUrl = thumbnailUrls[index];
+
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.onclick = () => openImage(mainImageUrl);
+
+            const image = document.createElement('img');
+            image.src = thumbnailUrl;
+            image.alt = 'Image';
+            thumbnail.appendChild(image);
+
+            gallery.appendChild(thumbnail);
+        });
+    </script>
+</body>
+</html>

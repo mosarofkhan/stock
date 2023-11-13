@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* Adjust the number of columns as needed */
+            gap: 10px;
+            width: 100%; /* Set the width to 100% to make the gallery fit the full page width */
+        }
+        .thumbnail {
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+        }
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="gallery"></div>
+
+    <script>
+        function openImage(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        const imageUrls = [
+        "https://iili.io/JqRxaS4.jpg",
+"https://iili.io/JqRxlHl.jpg",
+"https://iili.io/JqRx7KG.jpg",
+"https://iili.io/JqRxYlf.jpg",
+"https://iili.io/JqRxMx9.jpg",
+"https://iili.io/JqRxED7.jpg",
+"https://iili.io/JqRx1NS.jpg",
+"https://iili.io/JqRx0R2.jpg",
+"https://iili.io/JqRxjlj.jpg",
+"https://iili.io/JqRxWiu.jpg",
+"https://iili.io/JqRxVVe.jpg",
+"https://iili.io/JqRxhKb.jpg",
+"https://iili.io/JqRxOHQ.jpg",
+"https://iili.io/JqRxeRV.jpg",
+"https://iili.io/JqRxUWF.jpg",
+"https://iili.io/JqRxkOB.jpg",
+"https://iili.io/JqRxvDP.jpg",
+"https://iili.io/JqRxSx1.jpg",
+"https://iili.io/JqRxgig.jpg",
+"https://iili.io/JqRx60J.jpg",
+"https://iili.io/JqRxPUv.jpg",
+"https://iili.io/JqRxsJR.jpg",
+"https://iili.io/JqRxLRp.jpg",
+"https://iili.io/JqRxmsn.jpg",
+"https://iili.io/JqRxDxt.jpg",
+"https://iili.io/JqRxQON.jpg",
+"https://iili.io/JqRxZbI.jpg",
+"https://iili.io/JqRxbWX.jpg",
+"https://iili.io/JqRxyfs.jpg",
+"https://iili.io/JqRz90G.jpg",
+"https://iili.io/JqRzHgf.jpg",
+"https://iili.io/JqRz25l.jpg",
+"https://iili.io/JqRzdJ4.jpg",
+"https://iili.io/JqRz3e2.jpg",
+"https://iili.io/JqRzFbS.jpg",
+"https://iili.io/JqRzqX9.jpg",
+"https://iili.io/JqRzBse.jpg",
+"https://iili.io/JqRznqu.jpg",
+"https://iili.io/JqRzo0b.jpg",
+"https://iili.io/JqRzxgj.jpg",
+"https://iili.io/JqRzIdx.jpg",
+"https://iili.io/JqRzueV.webp",
+"https://iili.io/JqRzAmB.jpg",
+"https://iili.io/JqRz5zP.jpg",
+"https://iili.io/JqRz7X1.jpg",
+"https://iili.io/JqRzG7R.jpg",
+"https://iili.io/JqRzYLF.jpg",
+"https://iili.io/JqRzNBn.jpg",
+"https://iili.io/JqRzXII.jpg",
+"https://iili.io/JqRzhXt.jpg",
+"https://iili.io/JqRzjLX.jpg",
+"https://iili.io/JqRz874.jpg",
+"https://iili.io/JqRzv2f.jpg",
+"https://iili.io/JqRz4h7.jpg",
+"https://iili.io/JqRzSkl.jpg",
+"https://iili.io/JqRzrIS.jpg",
+"https://iili.io/JqRzUp2.png",
+"https://iili.io/JqRz6Q9.jpg",
+"https://iili.io/JqRzLrb.jpg",
+"https://iili.io/JqRzZ2j.jpg",
+"https://iili.io/JqRztYx.jpg",
+"https://iili.io/JqRzsEu.jpg",
+"https://iili.io/JqRzpTB.jpg",
+"https://iili.io/JqRzDkQ.jpg",
+"https://iili.io/JqRzbpV.jpg",
+"https://iili.io/JqRI9Q1.jpg",
+"https://iili.io/JqRIJCF.jpg",
+"https://iili.io/JqRIdEg.jpg",
+"https://iili.io/JqRIF3J.jpg",
+"https://iili.io/JqRIA3G.jpg",
+"https://iili.io/JqRICTN.jpg",
+"https://iili.io/JqRI24a.jpg",
+"https://iili.io/JqRIKYv.jpg",
+"https://iili.io/JqRIfvR.jpg",
+"https://iili.io/JqRInjI.jpg",
+"https://iili.io/JqRIoQt.jpg",
+"https://iili.io/JqRIzCX.jpg",
+"https://iili.io/JqRIIGn.jpg",
+"https://iili.io/JqRIT4s.jpg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+
+        imageUrls.forEach(imageUrl => {
+            // Get the thumbnail URL by adding ".th" before the file extension
+            const thumbnailUrl = imageUrl.replace(/\.(?=[^.]*$)/, '.th.');
+
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.onclick = () => openImage(imageUrl);
+
+            const image = document.createElement('img');
+            image.src = thumbnailUrl;
+            image.alt = 'Image';
+            thumbnail.appendChild(image);
+
+            gallery.appendChild(thumbnail);
+        });
+    </script>
+</body>
+</html>

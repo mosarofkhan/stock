@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* Adjust the number of columns as needed */
+            gap: 10px;
+            width: 100%; /* Set the width to 100% to make the gallery fit the full page width */
+        }
+        .thumbnail {
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+        }
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="gallery"></div>
+
+    <script>
+        function openImage(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        const imageUrls = [
+        "https://iili.io/JfwkC4j.png",
+"https://iili.io/JfwkBEb.jpg",
+"https://iili.io/JfcWCB4.jpg",
+"https://iili.io/JfcX3FV.png",
+"https://iili.io/JfwkxYQ.jpg",
+"https://iili.io/JfwkYGa.jpg",
+"https://iili.io/Jfwko3x.jpg",
+"https://iili.io/JfcX4HP.png",
+"https://iili.io/JfwkzvV.jpg",
+"https://iili.io/JfwkIyB.jpg",
+"https://iili.io/JfwkAj1.png",
+"https://iili.io/Jfwka6J.png",
+"https://iili.io/Jfwk7Cg.jpg",
+"https://iili.io/Jfwkl3v.png",
+"https://iili.io/Jfwk1vp.png",
+"https://iili.io/Jfwk0aR.jpg",
+"https://iili.io/JfwkVjt.png",
+"https://iili.io/JfwkWZX.jpg",
+"https://iili.io/Jfwkhnn.png",
+"https://iili.io/Jfwkea4.png",
+"https://iili.io/JfwkjGs.jpg",
+"https://iili.io/Jfwkw6G.jpg",
+"https://iili.io/JfwkOFf.jpg",
+"https://iili.io/JfwkUw7.png",
+"https://iili.io/JfwkSuS.png",
+"https://iili.io/Jfwkk8l.png",
+"https://iili.io/Jfwk892.jpg",
+"https://iili.io/Jfwk4ne.png",
+"https://iili.io/Jfwkgt9.png",
+"https://iili.io/Jfwk6Mu.png",
+"https://iili.io/JfwkDAB.png",
+"https://iili.io/JfwkLcx.png",
+"https://iili.io/JfwkP6b.png",
+"https://iili.io/JfwksFj.png",
+"https://iili.io/JfwkQ8Q.png",
+"https://iili.io/Jfwkt9V.png",
+"https://iili.io/JfwkbwP.png",
+"https://iili.io/Jfwkmt1.png",
+"https://iili.io/JfwkyoF.jpg",
+"https://iili.io/JfwvHPa.png",
+"https://iili.io/JfwvdKJ.jpg",
+"https://iili.io/JfwvK9p.png",
+"https://iili.io/Jfwv2cv.jpg",
+"https://iili.io/JfwvfAN.jpg",
+"https://iili.io/JfwvqNI.png",
+"https://iili.io/JfwvnoX.jpg",
+"https://iili.io/JfwvBtt.png",
+"https://iili.io/JfwvxPs.png",
+"https://iili.io/JfwvoVn.png",
+"https://iili.io/JfwvIKG.jpg",
+"https://iili.io/JfwvRHl.png",
+"https://iili.io/JfwvTlf.jpg",
+"https://iili.io/JfwvuS4.png",
+"https://iili.io/Jfwv5R2.jpg",
+"https://iili.io/Jfwv7NS.png",
+"https://iili.io/JfwvYD7.jpg",
+"https://iili.io/JfwvlVe.png",
+"https://iili.io/Jfwvcx9.jpg",
+"https://iili.io/Jfwv0iu.png",
+"https://iili.io/JfwvEKb.jpg",
+"https://iili.io/JfwvMUx.jpg",
+"https://iili.io/JfwvWHQ.jpg",
+"https://iili.io/JfwvGlj.jpg",
+"https://iili.io/JfwvXRV.jpg",
+"https://iili.io/JfwvhOB.jpg",
+"https://iili.io/JfwvNx1.jpg",
+"https://iili.io/Jfwvvfa.png",
+"https://iili.io/JfwvOWF.jpg",
+"https://iili.io/Jfwveig.jpg",
+"https://iili.io/Jfwv0iu.png",
+"https://iili.io/JfwvgJR.png",
+"https://iili.io/Jfwv80J.jpg",
+"https://iili.io/JfwvSUv.jpg",
+"https://iili.io/JfwvrRp.png",
+"https://iili.io/Jfwv4ON.png",
+"https://iili.io/Jfwvvfa.png",
+"https://iili.io/Jfwv6bI.jpg",
+"https://iili.io/JfldVZN.png",
+"https://iili.io/JfwvsWX.png",
+"https://iili.io/JfwvLsn.jpg",
+"https://iili.io/Jfwvixt.jpg",
+"https://iili.io/JfwvZfs.png",
+"https://iili.io/JfwvmJ4.png",
+"https://iili.io/Jfwvt0G.png",
+"https://iili.io/Jfwvp5l.png",
+"https://iili.io/JfwvDgf.jpg",
+"https://iili.io/Jfw89bS.png",
+"https://iili.io/Jfwvye2.png",
+"https://iili.io/Jfw8Jz7.jpg",
+"https://iili.io/Jfw8dX9.jpg",
+"https://iili.io/Jfw8Fqu.png",
+"https://iili.io/Jfw8K0b.jpg",
+"https://iili.io/Jfw82se.jpg",
+"https://iili.io/JfcSjrg.png",
+"https://iili.io/Jfw8fgj.png",
+"https://iili.io/Jfw8Bdx.jpg",
+"https://iili.io/Jfw8C5Q.png",
+"https://iili.io/Jfw8zzP.png",
+"https://iili.io/Jfw8neV.jpg",
+"https://iili.io/Jfw8omB.png",
+"https://iili.io/Jfw8TLF.jpg",
+"https://iili.io/Jfw8Aqg.jpg",
+"https://iili.io/Jfw8IX1.jpg",
+"https://iili.io/Jfw8R1a.jpg",
+"https://iili.io/Jfw85rJ.png",
+"https://iili.io/Jfw8a7R.jpg",
+"https://iili.io/Jfw8cep.jpg",
+"https://iili.io/Jfw8lmN.jpg",
+"https://iili.io/Jfw8GLX.jpg",
+"https://iili.io/Jfw81II.jpg",
+"https://iili.io/Jfw8EXt.jpg",
+"https://iili.io/JflGolI.jpg",
+"https://iili.io/Jfw8W1s.jpg",
+"https://iili.io/Jfw8XrG.jpg",
+"https://iili.io/Jfw8w74.jpg",
+"https://iili.io/Jfw8Nkl.jpg",
+"https://iili.io/Jfw8Op2.jpg",
+"https://iili.io/Jfw8j2f.jpg",
+"https://iili.io/Jfw8kIS.jpg",
+"https://iili.io/Jfw8vh7.jpg",
+"https://iili.io/Jfw862j.jpg",
+"https://iili.io/Jfw8gEu.jpg",
+"https://iili.io/Jfw88Q9.jpg",
+"https://iili.io/Jfw8spV.jpg",
+"https://iili.io/Jfw8tQ1.jpg",
+"https://iili.io/Jfw8rrb.jpg",
+"https://iili.io/Jfw8PYx.jpg",
+"https://iili.io/Jfw8ikQ.jpg",
+"https://iili.io/Jfw8QTB.jpg",
+"https://iili.io/Jfw8ZhP.jpg",
+"https://iili.io/Jfw8bCF.jpg",
+"https://iili.io/JfwS93J.jpg",
+"https://iili.io/JfwSqCX.jpg",
+"https://iili.io/JfwSHYv.jpg",
+"https://iili.io/JfwSJvR.png",
+"https://iili.io/JfwSzv4.jpg",
+"https://iili.io/JfwSdpp.jpg",
+"https://iili.io/JfwSKQt.jpg",
+"https://iili.io/JfwSo3G.jpg",
+"https://iili.io/JfwSC4s.jpg",
+"https://iili.io/JfwSxaf.jpg",
+"https://iili.io/JfwSIyl.jpg",
+"https://iili.io/JfwSuu2.jpg",
+"https://iili.io/JfwSAjS.jpg",
+"https://iili.io/JfwSRZ7.jpg",
+"https://iili.io/JfwS7n9.jpg",
+"https://iili.io/JfwSYGe.jpg",
+"https://iili.io/JfwSa6u.jpg",
+"https://iili.io/JfwSl3b.jpg",
+"https://iili.io/JfwS0aj.jpg",
+"https://iili.io/JfwSOFa.jpg",
+"https://iili.io/JfwSEyQ.jpg",
+"https://iili.io/JfwS18x.jpg",
+"https://iili.io/JfwSWZP.jpg",
+"https://iili.io/JfwSw6g.jpg",
+"https://iili.io/JfwSMuV.jpg",
+"https://iili.io/JfwShn1.jpg",
+"https://iili.io/JfwSjMF.jpg",
+"https://iili.io/JfwSecJ.jpg",
+"https://iili.io/JfwSk8v.jpg",
+"https://iili.io/JfwSSup.jpg",
+"https://iili.io/JfwS89R.jpg",
+"https://iili.io/JfwSDAl.jpg",
+"https://iili.io/JfwS4nt.jpg",
+"https://iili.io/JfwSgtI.jpg",
+"https://iili.io/JfwSLcG.jpg",
+"https://iili.io/JfwSPPn.jpg",
+"https://iili.io/JfwS6MX.jpg",
+"https://iili.io/JfwSsFs.jpg",
+"https://iili.io/JfwSt94.png",
+"https://iili.io/JfwSQSf.jpg",
+"https://iili.io/JfwSyo7.jpg",
+"https://iili.io/JfwUHPe.jpg",
+"https://iili.io/JfwSbN2.jpg",
+"https://iili.io/JfwUdKu.jpg",
+"https://iili.io/JfwU2cb.jpg",
+"https://iili.io/JfwU3Sj.jpg",
+"https://iili.io/JfwUfAQ.jpg",
+"https://iili.io/JfwUBDB.jpg",
+"https://iili.io/JfwUnoP.jpg",
+"https://iili.io/JfwUxiF.jpg",
+"https://iili.io/JfwUTla.jpg",
+"https://iili.io/JfwUIKg.jpg",
+"https://iili.io/JfwURHv.jpg",
+"https://iili.io/JfwUMUG.jpg",
+"https://iili.io/JfwU5RR.jpg",
+"https://iili.io/JfwUYDN.jpg",
+"https://iili.io/JfwUlVt.jpg",
+"https://iili.io/JfwUcxI.jpg",
+"https://iili.io/JfwU0iX.jpg",
+"https://iili.io/JfwUWJf.jpg",
+"https://iili.io/JfwUhOl.jpg",
+"https://iili.io/JfwUXR4.jpg",
+"https://iili.io/JfwUjb2.jpg",
+"https://iili.io/JfwUNxS.jpg",
+"https://iili.io/JfwUOW7.jpg",
+"https://iili.io/JfwUvfe.jpg",
+"https://iili.io/JfwUes9.jpg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+
+        imageUrls.forEach(imageUrl => {
+            // Get the thumbnail URL by adding ".th" before the file extension
+            const thumbnailUrl = imageUrl.replace(/\.(?=[^.]*$)/, '.th.');
+
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.onclick = () => openImage(imageUrl);
+
+            const image = document.createElement('img');
+            image.src = thumbnailUrl;
+            image.alt = 'Image';
+            thumbnail.appendChild(image);
+
+            gallery.appendChild(thumbnail);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* Adjust the number of columns as needed */
+            gap: 10px;
+            width: 100%; /* Set the width to 100% to make the gallery fit the full page width */
+        }
+        .thumbnail {
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+        }
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="gallery"></div>
+
+    <script>
+        function openImage(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        const imageUrls = [
+        "https://iili.io/Jfe7Kvf.jpg",
+"https://iili.io/Jfe7d4n.jpg",
+"https://iili.io/Jfe7HBt.jpg",
+"https://iili.io/Jfe5yQI.png",
+"https://iili.io/Jfe7JEX.png",
+"https://iili.io/Jfe732s.png",
+"https://iili.io/Jfe7FYG.png",
+"https://iili.io/Jfe7fp4.png",
+"https://iili.io/Jfe7BTl.png",
+"https://iili.io/Jfe7Cj2.jpg",
+"https://iili.io/Jfe7zG9.jpg",
+"https://iili.io/Jfe7nQS.png",
+"https://iili.io/Jfe7xC7.png",
+"https://iili.io/Jfe7I4e.png",
+"https://iili.io/Jfe7u3u.png",
+"https://iili.io/Jfe7AYb.png",
+"https://iili.io/Jfe7Rvj.png",
+"https://iili.io/Jfe75yx.png",
+"https://iili.io/Jfe7YTQ.png",
+"https://iili.io/Jfe7ajV.png",
+"https://iili.io/Jfe7cZB.png",
+"https://iili.io/Jfe70CP.png",
+"https://iili.io/Jfe71G1.png",
+"https://iili.io/Jfe7Vaa.png",
+"https://iili.io/Jfe7E6F.png",
+"https://iili.io/Jfe7W8J.jpg",
+"https://iili.io/Jfe7M3g.jpg",
+"https://iili.io/Jfe7Xyv.jpg",
+"https://iili.io/Jfe7v6X.jpg",
+"https://iili.io/Jfe7juR.png",
+"https://iili.io/Jfe7wjp.jpg",
+"https://iili.io/Jfe7kGt.jpg",
+"https://iili.io/Jfe7NZN.png",
+"https://iili.io/Jfe76u4.jpg",
+"https://iili.io/Jfe7SFn.jpg",
+"https://iili.io/Jfe749f.jpg",
+"https://iili.io/Jfe7g8G.jpg",
+"https://iili.io/Jfe7Uas.png",
+"https://iili.io/Jfe7Pwl.jpg",
+"https://iili.io/Jfe7it2.png",
+"https://iili.io/Jfe7LnS.jpg",
+"https://iili.io/Jfe7QM7.jpg",
+"https://iili.io/Jfe7ZP9.jpg",
+"https://iili.io/Jfe7DFe.jpg",
+"https://iili.io/Jfe7bcu.jpg",
+"https://iili.io/Jfe7y9j.jpg",
+"https://iili.io/Jfe7m8b.jpg",
+"https://iili.io/JfeY9Ax.jpg",
+"https://iili.io/JfeYHwQ.jpg",
+"https://iili.io/JfeYJtV.jpg",
+"https://iili.io/JfeY3MP.jpg",
+"https://iili.io/JfeYfKF.jpg",
+"https://iili.io/JfeYBSa.jpg",
+"https://iili.io/JfeYqcg.jpg",
+"https://iili.io/JfeYoAv.jpg",
+"https://iili.io/JfeYuVI.jpg",
+"https://iili.io/JfeYztp.jpg",
+"https://iili.io/JfeYxNR.jpg",
+"https://iili.io/JfeYToN.jpg",
+"https://iili.io/JfeY5KX.jpg",
+"https://iili.io/JfeYAPt.png",
+"https://iili.io/JfeY7ln.jpg",
+"https://iili.io/JfeYlRf.jpg",
+"https://iili.io/JfeYYSs.jpg",
+"https://iili.io/JfeYcHG.jpg",
+"https://iili.io/JfeY0N4.jpg",
+"https://iili.io/JfeYhle.jpg",
+"https://iili.io/JfeY1Dl.jpg",
+"https://iili.io/JfeYXf9.jpg",
+"https://iili.io/JfeYGx2.jpg",
+"https://iili.io/JfeYMVS.jpg",
+"https://iili.io/JfeY40F.jpg",
+"https://iili.io/JfeYVi7.jpg",
+"https://iili.io/JfeY8xV.jpg",
+"https://iili.io/JfeYkDQ.jpg",
+"https://iili.io/JfeYjUu.jpg",
+"https://iili.io/JfeYNHb.jpg",
+"https://iili.io/JfeYeOx.jpg",
+"https://iili.io/JfeY6Ug.jpg",
+"https://iili.io/JfeYSWB.jpg",
+"https://iili.io/JfeYLOv.jpg",
+"https://iili.io/JfeaKzl.jpg",
+"https://iili.io/Jfea9gn.jpg",
+"https://iili.io/JfeYtxp.jpg",
+"https://iili.io/JfeYDWN.jpg",
+"https://iili.io/JfeYpft.jpg",
+"https://iili.io/JfeYy0X.jpg",
+"https://iili.io/JfeaJJs.jpg",
+"https://iili.io/Jfea2ef.jpg",
+"https://iili.io/Jfea3b4.jpg",
+"https://iili.io/JfeafX2.jpg",
+"https://iili.io/JfeaCq7.jpg",
+"https://iili.io/JfeaqsS.jpg",
+"https://iili.io/Jfeaoge.png",
+"https://iili.io/Jfean19.jpg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+
+        imageUrls.forEach(imageUrl => {
+            // Get the thumbnail URL by adding ".th" before the file extension
+            const thumbnailUrl = imageUrl.replace(/\.(?=[^.]*$)/, '.th.');
+
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.onclick = () => openImage(imageUrl);
+
+            const image = document.createElement('img');
+            image.src = thumbnailUrl;
+            image.alt = 'Image';
+            thumbnail.appendChild(image);
+
+            gallery.appendChild(thumbnail);
+        });
+    </script>
+</body>
+</html>
